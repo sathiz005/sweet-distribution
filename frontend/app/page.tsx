@@ -26,6 +26,7 @@ const tabs = ["orders", "distribution", "payments", "completed", "catalogue"];
 export default function Home() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const [today, setToday] = useState("");
   const [tab, setTab] = useState("orders");
   const [loginOpen, setLoginOpen] = useState(false);
   const [createOrderOpen, setCreateOrderOpen] = useState(false);
@@ -45,6 +46,14 @@ export default function Home() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    setToday(
+      new Intl.DateTimeFormat("en-IN", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }).format(new Date()),
+    );
     setToken(window.localStorage.getItem("sowdeshwari-admin-token") || "");
     Promise.all([getOrders(), getProducts()])
       .then(([nextOrders, nextProducts]) => {
@@ -172,14 +181,7 @@ export default function Home() {
             <small>Order Book</small>
           </div>
         </div>
-        <span className="today">
-          {new Intl.DateTimeFormat("en-IN", {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          }).format(new Date())}
-        </span>
+        <span className="today">{today}</span>
         <button
           className="login-button"
           onClick={() => (token ? handleLogout() : setLoginOpen(true))}
