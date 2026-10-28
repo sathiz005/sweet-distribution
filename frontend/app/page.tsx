@@ -45,7 +45,7 @@ export default function Home() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    setToken(window.localStorage.getItem("venkateswari-admin-token") || "");
+    setToken(window.localStorage.getItem("sowdeshwari-admin-token") || "");
     Promise.all([getOrders(), getProducts()])
       .then(([nextOrders, nextProducts]) => {
         setOrders(nextOrders);
@@ -95,7 +95,7 @@ export default function Home() {
         String(form.get("password")),
       );
       setToken(session.token);
-      window.localStorage.setItem("venkateswari-admin-token", session.token);
+      window.localStorage.setItem("sowdeshwari-admin-token", session.token);
       setLoginOpen(false);
       setMessage("Administrator access enabled for this browser.");
     } catch (error) {
@@ -103,7 +103,7 @@ export default function Home() {
     }
   }
   function handleLogout() {
-    window.localStorage.removeItem("venkateswari-admin-token");
+    window.localStorage.removeItem("sowdeshwari-admin-token");
     setToken("");
     setMessage("Logged out. View-only mode is active.");
   }
@@ -168,7 +168,7 @@ export default function Home() {
         <div className="brand">
           <div className="mark">✦</div>
           <div>
-            <h1>Venkateswari Sweets</h1>
+            <h1>Sowdeshwari Sweets</h1>
             <small>Order Book</small>
           </div>
         </div>

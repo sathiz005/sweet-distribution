@@ -1,4 +1,4 @@
-# Venkateswari Sweets Platform
+# Sowdeshwari Sweets Platform
 
 Production-oriented replacement for the browser-only order book.
 
